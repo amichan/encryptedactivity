@@ -1,0 +1,94 @@
+<html>
+ <head>
+  <title>encryptedtraffic</title>
+ </head>
+ <body>
+ <H1> Encrypted Activity Monitor </H1>
+
+<p>
+<a href="#Overview">Project Overview</a><br>
+<a href="#Source">Data Sources</a><br>
+<a href="#Figure1">Preliminary Results - Correlating Bitcoin Transactions with Tor Network Traffic and Fear Index</a><br>
+<a href="#Figure2">Preliminary Results - Geographical Analysis</a><br>
+<a href="#Figure3">Proposed Project Implementation</a>
+</p>
+
+
+
+ <H2><a name="Overview">Project Overview:</a> </H2>
+ <p> The volume of Bitcoin transactions and traffic on the Tor network have both greatly increased since 2014 and there is an increasing interest in crypto-currencies in the financial industry. Additionally, there is increasing political instability worldwide which may relate to this growth. 
+
+<p>I propose to develop a framework for an encrypted activity monitoring system, highlighting abnormal local and global fluctuations in:<br> 
+
+(1) Bitcoin transaction volume <br>
+(2) Tor relay traffic <br>
+(3) World events (related to terror attacks in preliminary analysis)<br>
+
+<p>I will analyze the data for evidence of a causal relationship and work towards the goal of developing a predictive algorithm for the fluctuations of these parameters. For example, is there a pattern in Tor relay traffic and bitcoin transaction volume? How do local fluctuations in the Tor network relate to world events and is there a causal relationship in the Bitcoin transaction volume?</p>
+
+<p>In the first instance, the activity monitoring tool may alert a Bitcoin owner or trader to abnormal trading activity so that they may take action accordingly, high volume trading likely being linked to the Bitcoin price. In the second instance, high fluctuations of activity may perhaps serve as an alert system to acts of terror or may occur from a knock-on effect.</p>
+
+
+<H4>Background Information:</H4>
+<p>Tor network: The Tor network facilitates open network access free from surveillance with the mission to enable freedom, privacy, and confidential activities. Tor can be used by anyone and is particularly useful for confidential businesses, researchers searching for sensitive information, and military and law enforcement agencies. To enable financial transactions on the Tor network crypto currencies can be used, such as Bitcoin.</p>
+<p>Bitcoins: Bitcoins are a widely used crypto-currency. They can be bought and sold on several world-wide exchanges, including the largest two exchanges bit-x and okcoin.</p>
+
+<H4><a name="Source">Data Sources:</a></H4> 
+<p>The data sources are all available by API calls, implemented in R for preliminary analysis. Note that the weblinks below are not active while the project is under construction.</p>
+
+<p><b>Bitcoins</b>: The Bitcoin transaction volumes are available in json and csv format from: <b>https://www.quandl.com/collections/markets/bitcoin-data</b>.
+<br><br>Daily and historical data is accessible from this website for specific markets as well as the total global transactions. Historical data sets (of price, volume, etc.) are approximately 50kB each, with the data for 16 markets being available.
+</p>
+
+<p><b>Tor network flow</b>: Tor Metrics provides statistics on network relays and bridge (hidden relays), number of users accessing
+the network, and many other metrics. It should be possible to construct statistical information analyzing the number of users connecting from a country each day as well as bandwidth consumption. Note that the metrics still protect the anonymous nature of the network and this project does not aim to compromise the ideals of the network.
+<br><br>The total Tor traffic is available in csv format(700kB) from: <b>https://metrics.torproject.org/bandwidth-data.html</b>
+<br>The estimated number of clients in the Tor network in csv format (25MB) available here: <b>https://metrics.torproject.org/userstats-combined-data.html</b>
+<br> (And Graphs of the direct users by country are available here: <b>https://metrics.torproject.org/userstats-relay-country.html</b>)
+<br>
+<br>The Tor network flow has been previously modelled: <b>https://torflow.uncharted.software/</b>
+<br>And the code for the model and example data files are located at github, perhaps useful as a guide for the construction of data files for this project: <b>https://github.com/unchartedsoftware/torflow </b>.
+<br> 
+</p>
+
+<p><b>Sentiment analysis</b>: Google trends data is easily available in csv format from <b>google.com/trends</b>. 
+<br><br>Additional data sources will be considered to measure fluctuations in world events. Preliminary analysis has used search words related to terror attacks and thought to represent finite localized events.</p>
+
+<div style="width:100%;max-width:600px;margin:0 auto;"> <iframe src="//www.findthebest.com/w/cc77cKc2gPr" width="600" height="400" frameborder="0" scrolling="no" style="position:static;vertical-align:top;max-width:100%;min-height:400px;"> </iframe> <div style="text-align:center;"> <a target="_blank" href="http://economic-indexes.findthebest.com/l/8/Bitcoin#&s=2MJsKj" style="font:14px/16px arial;color:#3d3d3d;">Bitcoin Price vs. USD - Live Data from Quandl</a></div> </div>
+
+<H2><a name="Figure1">Preliminary Analysis:</a></H2>
+Preliminary analysis and calculated correlations were implemented in R.
+
+<H4> (1) Worldwide Bitcoin Transactions vs Tor network - Figure 1 (a, b):</H4>
+<p>  Preliminary analysis shows there is a high degree of correlation between Bitcoin trading and Tor network traffic. Using R to calculate the correlation of the daily activity since 2014 shows a <b>correlation of 0.867</b> with a 95% confidence interval of 0.85 to 0.88 and p value of 2.2e-16. </p>
+
+<H4> (2) Worldwide Bitcoin Transactions vs Fear Index - Figure 1 (c, d):</H4>
+<p>A preliminary sentiment relationship was examined by using a simple fear index created from Google Trends analysis of keywords "terrist", "suicide", "terrorist+attack", "bomb", "isis". The data was easily available on a weekly basis and therefore the Bitcoin data was analyzed on the same time interval (the weekly data was also available from Quandle in csv) A <b>correlation of 0.273</b> with a 95% confidence interval of 0.11 to 0.42 and p-value of 0.0016 shows that there is a weakly positive relationship.</p>
+
+<IMG SRC="Graphs.png" ALT="Graphs generated in R, calculated correlation values are give above." WIDTH=983.6 HEIGHT=697>
+
+<H4><a name="Figure2">(3) Geographical Analysis of Bitcoin Transactions and Tor Network Traffic - Figure 2:</a></H4> 
+<p>Figures available online show geographical concentrations for bitcoin nodes and tor network relay traffic. Visual analysis shows compelling evidence for the presence of geographical correlations between the two parameters. For example, there is a high concentration of Tor traffic through a node in West Africa and there is also a Bitcoin node in the same region. 
+
+<br><br>The geographical information of the Bitcoin transactions may perhaps be approximated to the volume trading in specific markets, the data for these markets being easily available from Quandl. Finally, further preliminary analysis shows that there is a concentration of level of interest in Google Trends data, with the keyword "Bitcoin". The high concentration seen for Bitcoin interest is from Ghana.</p>
+
+<IMG SRC="Location.png" ALT="Geographical analysis based on available maps of Bitcoin transactions and Tor Network Flow" WIDTH=1018 HEIGHT=705>
+
+
+<H2><a name="Figure3">Project Implementation:</a></H2>
+<p>In the project, I propose to create an encrypted activity monitoring system that shows (1) Bitcoin status (2) Fear Index - Sentiment Monitor (3) Tor Network Status. See Figure 3 below which shows a proposed model for the webpage. The status color green, yellow, red, will be a measure of fluctuations and change relative to the moving average or standard deviation of historical activity. Additionally, world map plots will show the geographical location of high levels of fluctuations outside of standard deviations of normal activity. Ideally, several consecutive days will be shown so that the user may visualize and analyze geographical relationships of unexpected fluctuations.</p>
+
+<IMG SRC="proposal.png" ALT="Outline of proposed activity monitor showing different parameters and anomalous activity is indicated by a red status, measured by comparing fluctuations with moving average." WIDTH=966 HEIGHT=840>
+
+
+<H3>Proposed Milestones:</H3>
+<H4> (1) Analyze the bitcoin transaction volumes by market: </H4> 
+<p>Analyze the moving average compared to daily fluctuations in the transaction volumes in local markets. ie., train an algorithm on historical data. Confirm if a simple threshold will allow the selection of local anomalous activity. Construct a worldmap and locate the markets on the map.</p>
+<H4> (2) Analyze the bandwidth consumption at traffic relays on the Tor network: </H4> 
+<p>Learn more about the Tor network and construct a method for obtaining daily traffic information from the top relays from the csv files available from Tor Metrics. Calculate the moving average and standard deviation of the historical data set. Confirm if a simple threshold will allow the selection of local anomalous activity. ie., train an algorithm on historical data. Additionally, construct a worldmap and locate the subset of nodes on the map.</p>
+<H4> (3) Build a framework for sentiment analysis (proposal is to use a fear index based on incidents of terror attacks): </H4> 
+<p>Google trends data limits the historical resolution of level of interest to weeks, instead of days, for time periods greater than 3 months. A daily historical data set needs to be built from iterative calls to google trends to construct the data set of daily data. Alternatively, a different source will be considered, such as the New York Times or Twitter.</p>
+<H4> (4) Predictive algorithm: </H4> 
+<p>Evaluation and implementation of a predictive algorithms. For example, it may be possible to use machine learning to predict behaviour of the Fear Index (sentiment) based on local anomolies of Tor Network Traffic and/or Bitcoin trading volumes.
+ </body>
+</html>
